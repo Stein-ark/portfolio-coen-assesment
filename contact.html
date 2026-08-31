@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--
+  Jonathan E. Abogye — Contact. COEN 554 Web Programming.
+  No JavaScript. No framework. No external requests.
+
+  The form uses native HTML5 validation attributes only (required, type,
+  minlength). All focus and validation states are styled in CSS through
+  :focus, :focus-visible, :valid, :invalid and :placeholder-shown. There is
+  no scripted validation and no scripted submission.
+
+  Canonical content schema: data/profile.json.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Jonathan E. Abogye</title>
+  <meta name="description" content="Get in touch with Jonathan E. Abogye — full-stack developer and Computer Engineering student based in Zaria, Kaduna State, Nigeria.">
+  <meta name="author" content="Jonathan E. Abogye">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Structured data: ContactPoint. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jonathan E. Abogye",
+    "url": "contact.html",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Zaria",
+      "addressRegion": "Kaduna State",
+      "addressCountry": "NG"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Professional enquiries",
+      "email": "hello@jonathanabogye.dev",
+      "areaServed": "NG",
+      "availableLanguage": ["English"]
+    },
+    "sameAs": [
+      "https://github.com/Stein-ark",
+      "https://www.linkedin.com/in/jonathan-abogye"
+    ]
+  }
+  </script>
+</head>
+
+<body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Jonathan E. Abogye — home">
+      <span class="logo-mark">JEA.</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-burger" for="nav-toggle">
+      <span class="visually-hidden">Open and close the main menu</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </label>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="education.html">Education</a></li>
+        <li><a class="nav-link" href="skills.html">Skills</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="interests.html">Interests</a></li>
+        <li><a class="nav-link" href="cv.html">CV</a></li>
+        <li><a class="nav-link" href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <span class="eyebrow">07 — Get in touch</span>
+      <div class="accent-keyline"></div>
+      <h1 class="page-title">Con<br>tact</h1>
+      <p class="page-lede lead">
+        Available for graduate engineering and full-stack roles from October
+        2026, and for freelance work now.
+      </p>
+    </div>
+
+    <div class="page-body">
+      <aside class="page-rail" aria-label="Contact details">
+        <dl class="spec">
+          <div>
+            <dt>Email</dt>
+            <!-- PLACEHOLDER address — replace with the real mailbox. -->
+            <dd><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></dd>
+          </div>
+          <div>
+            <dt>GitHub</dt>
+            <dd><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">github.com/Stein-ark</a></dd>
+          </div>
+          <div>
+            <dt>LinkedIn</dt>
+            <!-- PLACEHOLDER handle — confirm the real profile URL. -->
+            <dd><a class="link" href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">jonathan-abogye</a></dd>
+          </div>
+          <div>
+            <dt>Location</dt>
+            <dd>Zaria, Kaduna State, Nigeria</dd>
+          </div>
+        </dl>
+
+        <ul class="list-reset stack-s">
+          <li class="icon-inline">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="2.5" y="5" width="19" height="14"/>
+              <path d="M2.5 6l9.5 7 9.5-7"/>
+            </svg>
+            <span>Email is the fastest way to reach me.</span>
+          </li>
+          <li class="icon-inline">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 8l-5 4 5 4"/>
+              <path d="M15 8l5 4-5 4"/>
+            </svg>
+            <span>Code and side projects live on GitHub.</span>
+          </li>
+          <li class="icon-inline">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3.5" y="3.5" width="17" height="17"/>
+              <path d="M7.5 10v7M7.5 7v0.5M11.5 17v-7M11.5 13c0-2 5-2 5 1v3"/>
+            </svg>
+            <span>Professional history on LinkedIn.</span>
+          </li>
+          <li class="icon-inline">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+              <circle cx="12" cy="10" r="2.6"/>
+            </svg>
+            <span>Based in Zaria, open to remote work.</span>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="page-main-col">
+        <section class="section" aria-labelledby="contact-form-heading">
+          <div class="section-head">
+            <span class="section-index">01</span>
+            <h2 class="section-title" id="contact-form-heading">Send a message</h2>
+          </div>
+
+          <!--
+            action="mailto:" hands the message to the visitor's configured mail
+            client. It requires one to be set up, so it is not a production
+            solution; see docs/technical-report.md for the server-side endpoint
+            this would be replaced with. The address is a PLACEHOLDER.
+          -->
+          <form class="form"
+                action="mailto:hello@jonathanabogye.dev"
+                method="post"
+                enctype="text/plain">
+
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text"
+                     id="name"
+                     name="name"
+                     placeholder="Jane Doe"
+                     autocomplete="name"
+                     minlength="2"
+                     maxlength="80"
+                     required>
+              <span class="field-hint">Please enter at least two characters.</span>
+            </div>
+
+            <div class="field">
+              <label for="email">Your email</label>
+              <input type="email"
+                     id="email"
+                     name="email"
+                     placeholder="jane@example.com"
+                     autocomplete="email"
+                     required>
+              <span class="field-hint">Please enter a valid email address.</span>
+            </div>
+
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input type="text"
+                     id="subject"
+                     name="subject"
+                     placeholder="Graduate role / freelance enquiry"
+                     minlength="3"
+                     maxlength="120"
+                     required>
+              <span class="field-hint">Please enter at least three characters.</span>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message"
+                        name="message"
+                        placeholder="A few lines about what you have in mind."
+                        minlength="20"
+                        required></textarea>
+              <span class="field-hint">Please write at least twenty characters.</span>
+            </div>
+
+            <button class="btn" type="submit">Send message</button>
+          </form>
+
+          <p class="caption mt-m">
+            Submitting opens your own mail client with the message prefilled.
+            If nothing happens, email
+            <a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a>
+            directly.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="eyebrow">Contact</span>
+        <!-- PLACEHOLDER address — replace before submission. -->
+        <p><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Elsewhere</span>
+        <p><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">github.com/Stein-ark</a></p>
+        <!-- PLACEHOLDER handle — confirm before submission. -->
+        <p><a class="link" href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">LinkedIn</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Location</span>
+        <p class="icon-inline">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          Zaria, Kaduna State, Nigeria
+        </p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Site</span>
+        <p><a class="link" href="cv.html">Curriculum Vitae</a></p>
+        <p><a class="link" href="projects.html">Projects</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Jonathan E. Abogye. All rights reserved.</span>
+      <span>COEN 554 Web Programming &#183; Ahmadu Bello University, Zaria</span>
+    </div>
+  </footer>
+</body>
+</html>

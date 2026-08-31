@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "generated": "2026-08-26",
+  "note": "Canonical content model for the site. JavaScript is prohibited by the COEN 554 brief, so this file is not fetched at runtime; the HTML carries the same content statically. See docs/technical-report.md section 2.",
+  "profile": {
+    "id": "jonathan-abogye",
+    "name": "Jonathan E. Abogye",
+    "given_name": "Jonathan",
+    "family_name": "Abogye",
+    "title": "Full-Stack Developer & Computer Engineer",
+    "headline": "Software Engineer",
+    "short_bio": "Final-year Computer Engineering student at Ahmadu Bello University, Zaria. Builds web and mobile products end to end, and works on control systems and simulation on the engineering side.",
+    "long_bio": "Jonathan E. Abogye is a final-year Computer Engineering student at Ahmadu Bello University, Zaria, graduating in September 2026. He builds production web and mobile applications end to end, from data model and API through to interface, and works on control systems design and physical simulation on the engineering side. He also teaches: he founded and runs Genesis Engineer, a one-month intensive tech bootcamp, and mentors students through COESA.",
+    "status": "Final-year student, graduating September 2026",
+    "availability": "Open to graduate engineering and full-stack development roles from October 2026",
+    "location": {
+      "city": "Zaria",
+      "state": "Kaduna State",
+      "country": "Nigeria",
+      "country_code": "NG"
+    },
+    "contact": {
+      "email": "hello@jonathanabogye.dev",
+      "email_note": "PLACEHOLDER — replace with the real address before submission.",
+      "preferred_channel": "email"
+    },
+    "social": [
+      {
+        "id": "github",
+        "label": "GitHub",
+        "handle": "Stein-ark",
+        "url": "https://github.com/Stein-ark"
+      },
+      {
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "handle": "jonathan-abogye",
+        "url": "https://www.linkedin.com/in/jonathan-abogye",
+        "note": "PLACEHOLDER handle — confirm the real profile URL before submission."
+      },
+      {
+        "id": "email",
+        "label": "Email",
+        "handle": "hello@jonathanabogye.dev",
+        "url": "mailto:hello@jonathanabogye.dev"
+      }
+    ],
+    "knows_about": [
+      "Full-stack web development",
+      "React and Next.js",
+      "React Native and Expo",
+      "Control systems design",
+      "Simulink and Simscape Multibody",
+      "Computer vision",
+      "Optimization techniques"
+    ]
+  }
+}

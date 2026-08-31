@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  Jonathan E. Abogye — Personal Portfolio
+  COEN 554 Web Programming, Ahmadu Bello University, Zaria
+
+  CONSTRAINTS OBSERVED ON EVERY PAGE
+  - No JavaScript. No .js files, no inline event handlers, no DOM scripting.
+    The only script element on any page carries
+    type="application/ld+json", which is declarative structured data, not
+    executable code.
+  - No CSS framework. All CSS in assets/css/ is hand-written.
+  - No external network requests. Orbitron is self-hosted in assets/fonts/,
+    every icon is inline SVG, the portrait is a local file.
+
+  DATA MODEL NOTE
+  The canonical content schema for this site lives in data/*.json
+  (profile.json, projects.json, skills.json, education.json). Because
+  JavaScript is prohibited, those files cannot be fetched and rendered at
+  run time, so the same content is carried statically in this markup. The
+  JSON defines the shape the content would be rendered from in a build that
+  permits scripting. See docs/technical-report.md, section 2.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jonathan E. Abogye — Full-Stack Developer &amp; Computer Engineer</title>
+  <meta name="description" content="Portfolio of Jonathan E. Abogye, final-year Computer Engineering student at Ahmadu Bello University, Zaria. Full-stack web and mobile development, control systems and simulation.">
+  <meta name="author" content="Jonathan E. Abogye">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Structured data: Person. Declarative JSON-LD, permitted by the brief. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jonathan E. Abogye",
+    "givenName": "Jonathan",
+    "familyName": "Abogye",
+    "jobTitle": "Full-Stack Developer & Computer Engineer",
+    "description": "Final-year Computer Engineering student at Ahmadu Bello University, Zaria. Builds web and mobile products end to end, and works on control systems and simulation.",
+    "email": "mailto:hello@jonathanabogye.dev",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Ahmadu Bello University",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zaria",
+        "addressRegion": "Kaduna State",
+        "addressCountry": "NG"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Zaria",
+      "addressRegion": "Kaduna State",
+      "addressCountry": "NG"
+    },
+    "knowsAbout": [
+      "Full-stack web development",
+      "React",
+      "Next.js",
+      "React Native",
+      "Node.js",
+      "Control systems design",
+      "Simulink",
+      "Simscape Multibody",
+      "Computer vision"
+    ],
+    "sameAs": [
+      "https://github.com/Stein-ark",
+      "https://www.linkedin.com/in/jonathan-abogye"
+    ]
+  }
+  </script>
+</head>
+
+<body class="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ==========================================================================
+       Shared header. Identical markup on all eight pages.
+       Source order is input -> label -> nav, which is what lets the checked
+       state of the checkbox drive the nav panel through a sibling selector.
+       ========================================================================== -->
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Jonathan E. Abogye — home">
+      <span class="logo-mark">JEA.</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-burger" for="nav-toggle">
+      <span class="visually-hidden">Open and close the main menu</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </label>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html" aria-current="page">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="education.html">Education</a></li>
+        <li><a class="nav-link" href="skills.html">Skills</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="interests.html">Interests</a></li>
+        <li><a class="nav-link" href="cv.html">CV</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ==========================================================================
+       Hero. Three-column grid at >=1024px; single column below 768px in the
+       source order photo -> headline -> content.
+       ========================================================================== -->
+  <main class="home-hero" id="main">
+
+    <!-- Centre column: the only photograph on the site, full bleed. -->
+    <figure class="hero-media">
+      <!-- The only photograph on the site. 810x1080 (3:4), sized to the
+           centre column and cropped with object-fit: cover. -->
+      <img src="assets/images/jonathan.jpg"
+           alt="Jonathan E. Abogye, photographed outdoors in a dark shirt and sunglasses with a jacket over one shoulder."
+           width="810" height="1080">
+    </figure>
+
+    <!-- Left column -->
+    <div class="hero-left">
+      <div class="hero-headline">
+        <span class="vertical-word" aria-hidden="true">Software</span>
+        <h1 class="hero-stack">
+          <span class="visually-hidden">Jonathan E. Abogye, software engineer</span>
+          <span class="hero-word" aria-hidden="true">Engi</span>
+          <span class="hero-word" aria-hidden="true">neer</span>
+        </h1>
+      </div>
+
+      <p class="tracked-body hero-intro">
+        Final-year Computer Engineering student at Ahmadu Bello University,
+        Zaria. I build web and mobile products end to end, and design control
+        systems that fly.
+      </p>
+
+      <div class="hero-foot">
+        <ul class="link-row">
+          <li><a href="https://github.com/Stein-ark" rel="me noopener" target="_blank">GitHub</a></li>
+          <!-- PLACEHOLDER handle — confirm the real LinkedIn URL before submission. -->
+          <li><a href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">LinkedIn</a></li>
+          <!-- PLACEHOLDER address — replace with the real mailbox before submission. -->
+          <li><a href="mailto:hello@jonathanabogye.dev">Email</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div class="hero-right">
+      <!-- Decorative rule mark, mirroring the menu control that appears on
+           small screens. Hidden from assistive technology; the real menu
+           control lives in the header. -->
+      <svg class="icon icon-lg hero-rule-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+
+      <!-- ==================================================================
+           CSS-only component: featured-project carousel. Three radio inputs,
+           three dot labels, three panels. No script.
+           ================================================================== -->
+      <section class="carousel" aria-label="Featured projects">
+        <input type="radio" name="featured" id="feat-1" class="carousel-input" checked>
+        <input type="radio" name="featured" id="feat-2" class="carousel-input">
+        <input type="radio" name="featured" id="feat-3" class="carousel-input">
+
+        <div class="carousel-dots">
+          <label class="carousel-dot" for="feat-1"><span class="visually-hidden">Show featured project one, DroneAid</span></label>
+          <label class="carousel-dot" for="feat-2"><span class="visually-hidden">Show featured project two, Cove</span></label>
+          <label class="carousel-dot" for="feat-3"><span class="visually-hidden">Show featured project three, SmartScale</span></label>
+        </div>
+
+        <div class="carousel-panels">
+          <article class="carousel-panel">
+            <p class="eyebrow">Featured Project</p>
+            <h2 class="card-title">DroneAid</h2>
+            <p class="tracked-body">
+              A 3D quadcopter flight simulation with a full cascade control
+              stack, flying an autonomous waypoint search-and-locate mission.
+            </p>
+
+            <dl class="spec">
+              <div><dt>Stack</dt><dd>Simulink / Simscape</dd></div>
+              <div><dt>Type</dt><dd>Control Systems</dd></div>
+              <div><dt>Role</dt><dd>Sole Developer</dd></div>
+              <div><dt>Year</dt><dd>2026</dd></div>
+              <div><dt>Status</dt><dd>Complete</dd></div>
+            </dl>
+
+            <a class="link-caps" href="projects.html#droneaid">Read More</a>
+          </article>
+
+          <article class="carousel-panel">
+            <p class="eyebrow">Featured Project</p>
+            <h2 class="card-title">Cove</h2>
+            <p class="tracked-body">
+              A short-term rental platform covering listings, search, the
+              booking flow and role-based authentication.
+            </p>
+
+            <dl class="spec">
+              <div><dt>Stack</dt><dd>React / Node / MongoDB</dd></div>
+              <div><dt>Type</dt><dd>Web Platform</dd></div>
+              <div><dt>Role</dt><dd>Full-Stack Developer</dd></div>
+              <div><dt>Year</dt><dd>2025</dd></div>
+              <div><dt>Status</dt><dd>Complete</dd></div>
+            </dl>
+
+            <a class="link-caps" href="projects.html#cove">Read More</a>
+          </article>
+
+          <article class="carousel-panel">
+            <p class="eyebrow">Featured Project</p>
+            <h2 class="card-title">SmartScale</h2>
+            <p class="tracked-body">
+              A React Native app paired with a Bluetooth Low Energy weighing
+              scale, with local storage, charting and PDF export.
+            </p>
+
+            <dl class="spec">
+              <div><dt>Stack</dt><dd>React Native / Expo</dd></div>
+              <div><dt>Type</dt><dd>Mobile Application</dd></div>
+              <div><dt>Role</dt><dd>Sole Developer</dd></div>
+              <div><dt>Year</dt><dd>2025</dd></div>
+              <div><dt>Status</dt><dd>Complete</dd></div>
+            </dl>
+
+            <a class="link-caps" href="projects.html#smartscale">Read More</a>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <!-- Bottom band, left cell: sits against the left edge of the photograph -->
+    <div class="hero-band-left">
+      <a class="link-caps" href="projects.html">View Portfolio &#8594;</a>
+    </div>
+
+    <!-- Bottom band, right cell: caption and the rotating badge -->
+    <div class="hero-band-right">
+      <p class="caption">
+        Web and mobile products, control systems, and a bootcamp for engineers.
+      </p>
+
+      <!-- Rotating badge: inline SVG textPath on a circle, spun by a CSS
+           @keyframes animation. CSS animation is not JavaScript. The
+           animation stops under prefers-reduced-motion. -->
+      <div class="badge">
+        <svg class="badge-ring" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs>
+            <path id="badge-path"
+                  d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"
+                  fill="none"/>
+          </defs>
+          <text>
+            <textPath href="#badge-path" startOffset="0">&#8226; Jonathan Abogye &#8226; Full-Stack Engineer &#8226;</textPath>
+          </text>
+        </svg>
+        <span class="badge-centre" aria-hidden="true">
+          <span>Full</span>
+          <span>Stack</span>
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Shared footer. Identical markup on all eight pages.
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="eyebrow">Contact</span>
+        <!-- PLACEHOLDER address — replace before submission. -->
+        <p><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></p>
+      </div>
+
+      <div class="footer-col">
+        <span class="eyebrow">Elsewhere</span>
+        <p><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">github.com/Stein-ark</a></p>
+        <!-- PLACEHOLDER handle — confirm before submission. -->
+        <p><a class="link" href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">LinkedIn</a></p>
+      </div>
+
+      <div class="footer-col">
+        <span class="eyebrow">Location</span>
+        <p class="icon-inline">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          Zaria, Kaduna State, Nigeria
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <span class="eyebrow">Site</span>
+        <p><a class="link" href="cv.html">Curriculum Vitae</a></p>
+        <p><a class="link" href="projects.html">Projects</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Jonathan E. Abogye. All rights reserved.</span>
+      <span>COEN 554 Web Programming &#183; Ahmadu Bello University, Zaria</span>
+    </div>
+  </footer>
+</body>
+</html>

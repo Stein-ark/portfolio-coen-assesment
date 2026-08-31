@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "note": "Canonical education entities. Not fetched at runtime; education.html and cv.html carry the same content statically.",
+  "entries": [
+    {
+      "id": "abu-beng-computer-engineering",
+      "institution": "Ahmadu Bello University",
+      "institution_location": "Zaria, Kaduna State, Nigeria",
+      "qualification": "B.Eng Computer Engineering",
+      "level": "Undergraduate degree",
+      "start_date": "2020",
+      "end_date": "2026",
+      "expected_graduation": "2026-09",
+      "status": "In progress — graduating September 2026",
+      "coursework": [
+        "Computer Vision",
+        "Optimization Techniques",
+        "Web Programming",
+        "Engineering Thermodynamics",
+        "Database Systems"
+      ],
+      "highlights": [
+        "Final-year project: DroneAid — 3D quadcopter flight simulation with a full cascade control system, built in Simulink and Simscape Multibody.",
+        "Student Mentor, COESA."
+      ],
+      "is_placeholder": false
+    },
+    {
+      "id": "secondary-school-placeholder",
+      "institution": "[FILL IN — secondary school name]",
+      "institution_location": "[FILL IN — city, state]",
+      "qualification": "Senior Secondary Certificate Examination (SSCE)",
+      "level": "Secondary",
+      "start_date": "[FILL IN]",
+      "end_date": "[FILL IN]",
+      "expected_graduation": null,
+      "status": "Completed",
+      "coursework": [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "English Language"
+      ],
+      "highlights": [],
+      "is_placeholder": true,
+      "placeholder_note": "PLACEHOLDER ENTRY — Jonathan to supply institution name, location and dates before submission."
+    }
+  ]
+}

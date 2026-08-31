@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!--
+  Jonathan E. Abogye — Projects. COEN 554 Web Programming.
+  No JavaScript. No framework. No external requests.
+  The ALL / WEB / MOBILE / ENGINEERING filter below is driven entirely by
+  radio inputs and the :checked pseudo-class — no scripting.
+  Canonical content schema: data/projects.json. It is not fetched at run time
+  because scripting is prohibited; the same content is carried statically
+  below. See docs/technical-report.md, section 2.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects — Jonathan E. Abogye</title>
+  <meta name="description" content="Selected projects: DroneAid quadcopter flight simulation, Cove rental platform, SmartScale BLE mobile app, Shards, a classroom access system and client websites.">
+  <meta name="author" content="Jonathan E. Abogye">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Structured data: one CreativeWork per project. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "name": "DroneAid",
+        "genre": "Control Systems",
+        "dateCreated": "2026",
+        "creativeWorkStatus": "Complete",
+        "description": "A 3D quadcopter flight simulation built in Simulink and Simscape Multibody, implementing a full closed-loop cascade control system and flying an autonomous waypoint search-and-locate mission.",
+        "keywords": "MATLAB, Simulink, Simscape Multibody, control systems design",
+        "author": { "@type": "Person", "name": "Jonathan E. Abogye" }
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Cove",
+        "genre": "Web Platform",
+        "dateCreated": "2025",
+        "creativeWorkStatus": "Complete",
+        "description": "A short-term rental platform covering listings, search, the booking flow and role-based authentication.",
+        "keywords": "React, Node.js, Express, MongoDB",
+        "author": { "@type": "Person", "name": "Jonathan E. Abogye" }
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Shards",
+        "genre": "Web Platform",
+        "dateCreated": "2026",
+        "creativeWorkStatus": "Delivered",
+        "description": "A restaurant web platform, built under contract as frontend developer between January and February 2026.",
+        "keywords": "React, Next.js, TypeScript, CSS3",
+        "author": { "@type": "Person", "name": "Jonathan E. Abogye" }
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "SmartScale",
+        "genre": "Mobile Application",
+        "dateCreated": "2025",
+        "creativeWorkStatus": "Complete",
+        "description": "A React Native mobile application that pairs with a Bluetooth Low Energy weighing scale, with local SQLite storage, charting and PDF export.",
+        "keywords": "React Native, Expo, SQLite, Bluetooth Low Energy, TypeScript",
+        "author": { "@type": "Person", "name": "Jonathan E. Abogye" }
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Smart Classroom Access & Ticketing System",
+        "genre": "Web Platform",
+        "dateCreated": "2025",
+        "creativeWorkStatus": "Complete",
+        "description": "An access control and ticketing system for classroom facilities, with administrative dashboards and multi-stage approval workflows.",
+        "keywords": "React, Node.js, Express, MongoDB, REST APIs",
+        "author": { "@type": "Person", "name": "Jonathan E. Abogye" }
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "Client Websites",
+        "genre": "Web Platform",
+        "dateCreated": "2026",
+        "creativeWorkStatus": "Published",
+        "description": "Live production websites built for a clothing brand, a makeup artist and a hair stylist.",
+        "keywords": "Next.js, TypeScript, CSS3, Vercel",
+        "author": { "@type": "Person", "name": "Jonathan E. Abogye" }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Jonathan E. Abogye — home">
+      <span class="logo-mark">JEA.</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-burger" for="nav-toggle">
+      <span class="visually-hidden">Open and close the main menu</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </label>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="education.html">Education</a></li>
+        <li><a class="nav-link" href="skills.html">Skills</a></li>
+        <li><a class="nav-link" href="projects.html" aria-current="page">Projects</a></li>
+        <li><a class="nav-link" href="interests.html">Interests</a></li>
+        <li><a class="nav-link" href="cv.html">CV</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <span class="eyebrow">04 — Work</span>
+      <div class="accent-keyline"></div>
+      <h1 class="page-title">Pro<br>jects</h1>
+      <p class="page-lede lead">
+        Six projects across web, mobile and control systems. Filter by
+        discipline below.
+      </p>
+    </div>
+
+    <div class="page-body">
+      <aside class="page-rail" aria-label="Project summary">
+        <dl class="spec">
+          <div><dt>Total</dt><dd>6 projects</dd></div>
+          <div><dt>Web</dt><dd>4</dd></div>
+          <div><dt>Mobile</dt><dd>1</dd></div>
+          <div><dt>Engineering</dt><dd>1</dd></div>
+          <div><dt>Span</dt><dd>2025 &#8212; 2026</dd></div>
+        </dl>
+        <p class="caption">
+          Links marked with a hash are awaiting a public repository or live
+          URL.
+        </p>
+      </aside>
+
+      <div class="page-main-col">
+
+        <!-- ==================================================================
+             CSS-only filter. The four radio inputs are direct siblings of both
+             .filter-bar and .card-grid; :checked plus the ~ combinator hides
+             the non-matching cards. No script, and the tabs are reachable and
+             operable from the keyboard as a native radio group.
+             ================================================================== -->
+        <section class="filters" aria-labelledby="filter-heading">
+          <h2 class="visually-hidden" id="filter-heading">Filter projects by discipline</h2>
+
+          <input type="radio" name="project-filter" id="filter-all" class="filter-input" checked>
+          <input type="radio" name="project-filter" id="filter-web" class="filter-input">
+          <input type="radio" name="project-filter" id="filter-mobile" class="filter-input">
+          <input type="radio" name="project-filter" id="filter-eng" class="filter-input">
+
+          <div class="filter-bar">
+            <label class="filter-tab" for="filter-all">All</label>
+            <label class="filter-tab" for="filter-web">Web</label>
+            <label class="filter-tab" for="filter-mobile">Mobile</label>
+            <label class="filter-tab" for="filter-eng">Engineering</label>
+          </div>
+
+          <div class="card-grid">
+
+            <!-- ================ DroneAid ================ -->
+            <article class="card cat-engineering" id="droneaid">
+              <p class="eyebrow">Engineering &#183; 2026</p>
+              <h3 class="card-title">DroneAid</h3>
+              <p class="card-summary">
+                A 3D quadcopter flight simulation with a full closed-loop
+                cascade control system, flying an autonomous waypoint
+                search-and-locate mission.
+              </p>
+              <p class="card-summary">
+                Inner angular-rate loops, outer attitude loops and altitude
+                hold. Gains were derived analytically from measured mass and
+                inertia rather than tuned by hand. Final-year project.
+              </p>
+
+              <ul class="tags">
+                <li class="tag">MATLAB</li>
+                <li class="tag">Simulink</li>
+                <li class="tag">Simscape Multibody</li>
+                <li class="tag">Control Systems</li>
+              </ul>
+
+              <dl class="spec">
+                <div><dt>Role</dt><dd>Sole Developer</dd></div>
+                <div><dt>Year</dt><dd>2026</dd></div>
+                <div><dt>Status</dt><dd>Complete</dd></div>
+              </dl>
+
+              <!-- PLACEHOLDER link — replace "#" with the repository or report URL. -->
+              <a class="link-caps" href="#droneaid">Repository &#8594;</a>
+            </article>
+
+            <!-- ================ Cove ================ -->
+            <article class="card cat-web" id="cove">
+              <p class="eyebrow">Web &#183; 2025</p>
+              <h3 class="card-title">Cove</h3>
+              <p class="card-summary">
+                A short-term rental platform: listings, search, the booking
+                flow, and role-based authentication separating guests, hosts
+                and administrators.
+              </p>
+
+              <ul class="tags">
+                <li class="tag">React</li>
+                <li class="tag">Node.js</li>
+                <li class="tag">Express</li>
+                <li class="tag">MongoDB</li>
+              </ul>
+
+              <dl class="spec">
+                <div><dt>Role</dt><dd>Full-Stack Developer</dd></div>
+                <div><dt>Year</dt><dd>2025</dd></div>
+                <div><dt>Status</dt><dd>Complete</dd></div>
+              </dl>
+
+              <!-- PLACEHOLDER link — replace "#" with the live or repository URL. -->
+              <a class="link-caps" href="#cove">Repository &#8594;</a>
+            </article>
+
+            <!-- ================ SmartScale ================ -->
+            <article class="card cat-mobile" id="smartscale">
+              <p class="eyebrow">Mobile &#183; 2025</p>
+              <h3 class="card-title">SmartScale</h3>
+              <p class="card-summary">
+                A React Native application that pairs with a Bluetooth Low
+                Energy weighing scale. Readings are stored locally in SQLite,
+                charted over time and exported to PDF.
+              </p>
+
+              <ul class="tags">
+                <li class="tag">React Native</li>
+                <li class="tag">Expo</li>
+                <li class="tag">SQLite</li>
+                <li class="tag">BLE</li>
+                <li class="tag">TypeScript</li>
+              </ul>
+
+              <dl class="spec">
+                <div><dt>Role</dt><dd>Sole Developer</dd></div>
+                <div><dt>Year</dt><dd>2025</dd></div>
+                <div><dt>Status</dt><dd>Complete</dd></div>
+              </dl>
+
+              <!-- PLACEHOLDER link — replace "#" with the repository URL. -->
+              <a class="link-caps" href="#smartscale">Repository &#8594;</a>
+            </article>
+
+            <!-- ================ Shards ================ -->
+            <article class="card cat-web" id="shards">
+              <p class="eyebrow">Web &#183; 2026</p>
+              <h3 class="card-title">Shards</h3>
+              <p class="card-summary">
+                A restaurant web platform. Engaged as contracted frontend
+                developer from January to February 2026, responsible for the
+                interface build.
+              </p>
+
+              <ul class="tags">
+                <li class="tag">React</li>
+                <li class="tag">Next.js</li>
+                <li class="tag">TypeScript</li>
+                <li class="tag">CSS3</li>
+              </ul>
+
+              <dl class="spec">
+                <div><dt>Role</dt><dd>Frontend Developer (Contract)</dd></div>
+                <div><dt>Year</dt><dd>2026</dd></div>
+                <div><dt>Status</dt><dd>Delivered</dd></div>
+              </dl>
+
+              <!-- PLACEHOLDER link — replace "#" with the live site URL. -->
+              <a class="link-caps" href="#shards">Visit site &#8594;</a>
+            </article>
+
+            <!-- ================ Smart Classroom ================ -->
+            <article class="card cat-web" id="smart-classroom">
+              <p class="eyebrow">Web &#183; 2025</p>
+              <h3 class="card-title">Smart Classroom Access &amp; Ticketing</h3>
+              <p class="card-summary">
+                Access control and ticketing for classroom facilities, with
+                administrative dashboards and multi-stage approval workflows.
+              </p>
+
+              <ul class="tags">
+                <li class="tag">React</li>
+                <li class="tag">Node.js</li>
+                <li class="tag">Express</li>
+                <li class="tag">MongoDB</li>
+                <li class="tag">REST APIs</li>
+              </ul>
+
+              <dl class="spec">
+                <div><dt>Role</dt><dd>Full-Stack Developer</dd></div>
+                <div><dt>Year</dt><dd>2025</dd></div>
+                <div><dt>Status</dt><dd>Complete</dd></div>
+              </dl>
+
+              <!-- PLACEHOLDER link — replace "#" with the repository URL. -->
+              <a class="link-caps" href="#smart-classroom">Repository &#8594;</a>
+            </article>
+
+            <!-- ================ Client websites ================ -->
+            <article class="card cat-web" id="client-websites">
+              <p class="eyebrow">Web &#183; 2025 &#8212; 2026</p>
+              <h3 class="card-title">Client Websites</h3>
+              <p class="card-summary">
+                Live production sites for small businesses: a clothing brand, a
+                makeup artist and a hair stylist. Design, build and deployment
+                on each.
+              </p>
+
+              <ul class="tags">
+                <li class="tag">Next.js</li>
+                <li class="tag">TypeScript</li>
+                <li class="tag">CSS3</li>
+                <li class="tag">Vercel</li>
+              </ul>
+
+              <dl class="spec">
+                <div><dt>Role</dt><dd>Freelance Full-Stack Developer</dd></div>
+                <div><dt>Year</dt><dd>2025 &#8212; 2026</dd></div>
+                <div><dt>Status</dt><dd>Live</dd></div>
+              </dl>
+
+              <!-- PLACEHOLDER links — replace "#" with the live site URLs. -->
+              <a class="link-caps" href="#client-websites">Visit sites &#8594;</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="eyebrow">Contact</span>
+        <!-- PLACEHOLDER address — replace before submission. -->
+        <p><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Elsewhere</span>
+        <p><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">github.com/Stein-ark</a></p>
+        <!-- PLACEHOLDER handle — confirm before submission. -->
+        <p><a class="link" href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">LinkedIn</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Location</span>
+        <p class="icon-inline">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          Zaria, Kaduna State, Nigeria
+        </p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Site</span>
+        <p><a class="link" href="cv.html">Curriculum Vitae</a></p>
+        <p><a class="link" href="projects.html">Projects</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Jonathan E. Abogye. All rights reserved.</span>
+      <span>COEN 554 Web Programming &#183; Ahmadu Bello University, Zaria</span>
+    </div>
+  </footer>
+</body>
+</html>

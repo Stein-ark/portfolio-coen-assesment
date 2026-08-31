@@ -1,0 +1,457 @@
+/* ==========================================================================
+   responsive.css — breakpoint enhancements + print
+   --------------------------------------------------------------------------
+   Loaded last. main.css holds the mobile base; nothing here is undone below
+   its own breakpoint. Verified at 320px, 768px and 1440px.
+   ========================================================================== */
+
+/* ==========================================================================
+   >= 480px — small tablets / large phones
+   ========================================================================== */
+
+@media (min-width: 480px) {
+  :root {
+    --gutter: 2rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ==========================================================================
+   >= 768px — the navigation becomes permanent, the rotated word appears
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 3rem;
+    --header-h: 5rem;
+  }
+
+  /* The checkbox hack is a small-screen affordance only. Removing the input
+     and its label from the box tree also removes them from the tab order, so
+     no dead control is left behind for keyboard users. */
+  .nav-toggle,
+  .nav-burger {
+    display: none;
+  }
+
+  .site-nav {
+    position: static;
+    max-height: none;
+    visibility: visible;
+    overflow: visible;
+    border-bottom: 0;
+    background: transparent;
+    transition: none;
+    margin-left: var(--space-l);
+  }
+
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3xs) var(--space-s);
+  }
+
+  .nav-list li + li {
+    border-top: 0;
+  }
+
+  /* Middot separators, as in the reference layout */
+  .nav-list li + li::before {
+    content: "\00B7";
+    margin-right: var(--space-s);
+    color: var(--grey-mid);
+  }
+
+  .nav-list li {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link {
+    padding: 0;
+  }
+
+  .nav-link[aria-current="page"] {
+    box-shadow: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  .nav-link[aria-current="page"]::after {
+    content: none;
+  }
+
+  /* The rotated word only makes sense once there is a gutter to hold it */
+  .vertical-word {
+    display: block;
+  }
+
+  /* The decorative mark takes over from the hidden menu control */
+  .hero-rule-mark {
+    display: block;
+  }
+
+  .page-body {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+
+  .card-grid.two-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-xl);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .badge {
+    width: 9.5rem;
+    height: 9.5rem;
+  }
+}
+
+/* ==========================================================================
+   >= 1024px — the three-column editorial hero
+   ==========================================================================
+   The homepage header is lifted out of the flow and pinned across the top of
+   the composition with no fill and no rule, so the photograph reaches y = 0
+   and bleeds past it. The hero grid underneath is then only two rows:
+
+     row 1  | hero-left  |   PHOTO   |  hero-right  |  (1fr)
+     row 2  | band-left  |   PHOTO   |  band-right  |  (auto)
+
+   The photo cell spans both rows with zero padding, running edge to edge and
+   bleeding past the header above and the band below, while the side columns
+   stay generously padded. That contrast is the composition.
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 4rem;
+  }
+
+  .home {
+    position: relative;
+  }
+
+  /* Pinned over the hero, transparent, no rule. Stacked rather than in a row:
+     the logo sits top-left with the nav directly beneath it, as the reference
+     composition has it. Stacking also hands the nav the full width of column
+     one, so it never runs over the photograph at narrower desktop widths. */
+  .home .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-m);
+    background: transparent;
+    border-bottom: 0;
+    padding-top: var(--space-m);
+  }
+
+  /* Nav is confined to the left column so it never runs over the photograph.
+     Set one step smaller and capped in width, the eight labels break into two
+     tight rows of four beneath the logo — the reference layout's proportions
+     with the full site map the brief requires. */
+  /* Sits under the logo, so it has column one to itself. Capped so the eight
+     labels break 4 + 4 rather than running out to the photograph's edge. */
+  /* The labels flow inline and wrap naturally, which keeps the middot rhythm
+     even. The cap is derived from the layout rather than guessed: column one
+     is 40vw, less its gutter and a little breathing room, so the nav can
+     never reach the photograph at any desktop width. Where the run breaks
+     within that width is cosmetic and allowed to vary. */
+  .home .site-nav {
+    margin-left: 0;
+    max-width: calc(40vw - var(--gutter) - 1rem);
+  }
+
+  .home .nav-list {
+    gap: var(--space-3xs) var(--space-2xs);
+  }
+
+  .home .nav-list li + li::before {
+    margin-right: var(--space-2xs);
+  }
+
+  .home .nav-link {
+    font-size: 0.66rem;
+  }
+
+  /* The hero stack now shares the viewport with two other columns, so it is
+     re-sized against 40% of the viewport rather than the full measure. Four
+     characters of Orbitron 900 run to roughly 3em; at 8.6vw that clears the
+     column's inner width at every viewport from 1024px upward. */
+  :root {
+    --display-xl: clamp(5rem, 8.6vw, 11rem);
+  }
+
+  /* minmax(0, …) is load-bearing: without it the columns inherit an automatic
+     minimum from their content and the 40/30/30 split silently drifts. */
+  .home-hero {
+    grid-template-columns: minmax(0, 40fr) minmax(0, 30fr) minmax(0, 30fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  /* The photograph is deliberately shorter than the column. It starts at
+     y = 0 — bleeding past the pinned header — and stops partway down, leaving
+     the rest of the centre column white through to the bottom band. The
+     figure carries the height, so the image still fills it edge to edge and
+     crops cleanly; there is no empty box below the picture. */
+  .hero-media {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    aspect-ratio: auto;
+    height: 62vh;
+    align-self: start;
+  }
+
+  /* Top padding clears the pinned header. Column one clears the taller
+     stacked logo-plus-nav block; column three only clears the logo's row. */
+  .hero-left {
+    grid-column: 1;
+    grid-row: 1;
+    padding: calc(var(--header-h) + var(--space-2xl)) var(--gutter) var(--space-m);
+  }
+
+  .hero-right {
+    grid-column: 3;
+    grid-row: 1;
+    padding: calc(var(--header-h) + var(--space-m)) var(--gutter) var(--space-m);
+    border-top: 0;
+  }
+
+  .hero-band-left {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;   /* sits against the left edge of the photograph */
+    text-align: right;
+    gap: var(--space-2xs);
+    padding: var(--space-m) var(--gutter) var(--space-l) var(--gutter);
+    border-top: var(--hairline);
+  }
+
+  .hero-band-right {
+    grid-column: 3;
+    grid-row: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding: var(--space-m) var(--gutter) var(--space-l);
+    border-top: var(--hairline);
+  }
+
+  .hero-headline {
+    margin-block: var(--space-xl) var(--space-l);
+  }
+
+  .hero-left .hero-foot {
+    margin-top: auto;
+  }
+
+  /* Interior pages: asymmetric two-column body with wide margins */
+  .page-head {
+    padding: var(--space-2xl) var(--gutter) var(--space-l);
+  }
+
+  .page-body {
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    column-gap: var(--space-2xl);
+    padding: var(--space-xl) var(--gutter) var(--space-2xl);
+  }
+
+  /* A sticky left rail keeps section context visible while the right column
+     scrolls — no script involved. */
+  .page-rail {
+    position: sticky;
+    top: var(--space-l);
+    align-self: start;
+  }
+
+  .page-main-col {
+    min-width: 0;
+  }
+
+  .full-span {
+    grid-column: 1 / -1;
+  }
+
+  .card-grid.two-up {
+    column-gap: var(--space-2xl);
+  }
+}
+
+/* ==========================================================================
+   1024px - 1199px — the tightest desktop case
+   --------------------------------------------------------------------------
+   Column one is only ~410px wide here. A smaller gutter gives the nav and the
+   hero stack the room they need without changing the type sizes.
+   ========================================================================== */
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  :root {
+    --gutter: 3rem;
+  }
+}
+
+/* ==========================================================================
+   >= 1440px — cap the measure so the composition does not thin out
+   ========================================================================== */
+
+@media (min-width: 1440px) {
+  :root {
+    --gutter: 5rem;
+  }
+
+  .hero-intro,
+  .page-head .page-lede {
+    max-width: 34ch;
+  }
+}
+
+/* ==========================================================================
+   PRINT — primarily for cv.html
+   --------------------------------------------------------------------------
+   Strips navigation, footer and every decorative element so the CV prints
+   as one or two clean A4 pages in black on white.
+   ========================================================================== */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 16mm 14mm;
+  }
+
+  :root {
+    --gutter: 0;
+    --ink: #000000;
+    --secondary: #222222;
+    --muted: #444444;
+    --rule: #bbbbbb;
+  }
+
+  html,
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  /* Chrome furniture and decoration are removed entirely */
+  .site-header,
+  .site-nav,
+  .nav-burger,
+  .nav-toggle,
+  .site-footer,
+  .skip-link,
+  .badge,
+  .accent-keyline,
+  .vertical-word,
+  .carousel-dots,
+  .filter-bar,
+  .hero-media,
+  .print-hide {
+    display: none !important;
+  }
+
+  .page-head,
+  .page-body,
+  .section {
+    padding: 0;
+    border: 0;
+  }
+
+  .page-body {
+    display: block;
+  }
+
+  .page-rail {
+    position: static;
+  }
+
+  /* On screen a 62ch measure keeps paragraphs readable. On A4 the page
+     margins already set the line length, and keeping the cap would waste
+     roughly half the width and push the CV onto an extra sheet. */
+  p,
+  .lead,
+  .card-summary {
+    max-width: none;
+  }
+
+  .page-title {
+    font-size: 22pt;
+    line-height: 1;
+    margin-bottom: 2mm;
+  }
+
+  .section-title {
+    font-size: 12pt;
+    margin-top: 6mm;
+  }
+
+  /* Print-only contact line, hidden on screen */
+  .print-only {
+    display: block !important;
+    font-size: 9.5pt;
+    color: #000000;
+  }
+
+  /* Never break a CV entry across a page boundary */
+  .cv-entry,
+  .accordion details,
+  .spec-row,
+  dl.spec > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .section {
+    break-inside: auto;
+  }
+
+  /* Accordions must be open on paper regardless of screen state */
+  details {
+    display: block !important;
+  }
+
+  details > *:not(summary) {
+    display: block !important;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 0;
+  }
+
+  /* Expand the destination of real links so a printed page stays useful */
+  .cv-body a[href^="http"]::after,
+  .cv-body a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #444444;
+  }
+
+  .cv-body a[href^="#"]::after,
+  .cv-body a[href$=".pdf"]::after {
+    content: none;
+  }
+}
+
+/* Print-only blocks are hidden on screen */
+.print-only {
+  display: none;
+}

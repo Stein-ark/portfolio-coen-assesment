@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--
+  Jonathan E. Abogye — Curriculum Vitae. COEN 554 Web Programming.
+  No JavaScript. No framework. No external requests.
+
+  This is a typeset HTML CV, not an embedded PDF viewer and not an image.
+  The @media print block in assets/css/responsive.css strips the header,
+  navigation, footer and every decorative element so the page prints as one
+  or two clean A4 pages.
+
+  Canonical content schema: data/profile.json, data/education.json and
+  data/skills.json. They are not fetched at run time because scripting is
+  prohibited; the same content is carried statically below.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Curriculum Vitae — Jonathan E. Abogye</title>
+  <meta name="description" content="Curriculum vitae of Jonathan E. Abogye: B.Eng Computer Engineering, Ahmadu Bello University Zaria; founder of Genesis Engineer; full-stack and mobile developer.">
+  <meta name="author" content="Jonathan E. Abogye">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Structured data: Person with credentials and current organisation. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jonathan E. Abogye",
+    "jobTitle": "Full-Stack Developer & Computer Engineer",
+    "email": "mailto:hello@jonathanabogye.dev",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Zaria",
+      "addressRegion": "Kaduna State",
+      "addressCountry": "NG"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Ahmadu Bello University",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zaria",
+        "addressRegion": "Kaduna State",
+        "addressCountry": "NG"
+      }
+    },
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "degree",
+      "educationalLevel": "Bachelor of Engineering",
+      "name": "B.Eng Computer Engineering",
+      "recognizedBy": {
+        "@type": "CollegeOrUniversity",
+        "name": "Ahmadu Bello University"
+      },
+      "validIn": {
+        "@type": "AdministrativeArea",
+        "name": "Nigeria"
+      }
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Genesis Engineer",
+      "description": "A one-month intensive tech bootcamp running five tracks: Web Foundations, Frontend Engineering, CAD & Modelling, Product Design and Agentic AI."
+    },
+    "sameAs": [
+      "https://github.com/Stein-ark",
+      "https://www.linkedin.com/in/jonathan-abogye"
+    ]
+  }
+  </script>
+</head>
+
+<body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Jonathan E. Abogye — home">
+      <span class="logo-mark">JEA.</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-burger" for="nav-toggle">
+      <span class="visually-hidden">Open and close the main menu</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </label>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="education.html">Education</a></li>
+        <li><a class="nav-link" href="skills.html">Skills</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="interests.html">Interests</a></li>
+        <li><a class="nav-link" href="cv.html" aria-current="page">CV</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="cv-body">
+    <div class="page-head">
+      <span class="eyebrow print-hide">06 — Record</span>
+      <div class="accent-keyline"></div>
+      <h1 class="page-title">Jonathan E.<br>Abogye</h1>
+
+      <!-- Screen version of the contact strip -->
+      <p class="page-lede lead print-hide">
+        Full-Stack Developer &amp; Computer Engineer &#183; Zaria, Kaduna
+        State, Nigeria
+      </p>
+
+      <!-- Print version: one dense contact line, hidden on screen -->
+      <p class="print-only">
+        Full-Stack Developer &amp; Computer Engineer &#183;
+        Zaria, Kaduna State, Nigeria &#183;
+        hello@jonathanabogye.dev &#183;
+        github.com/Stein-ark
+      </p>
+
+      <p class="print-hide">
+        <!-- assets/cv/jonathan-abogye-cv.pdf is present (2 pages). Printing
+             this page from the browser produces an equivalent document via the
+             @media print rules in assets/css/responsive.css. -->
+        <a class="link-caps" href="assets/cv/jonathan-abogye-cv.pdf" download>Download PDF &#8594;</a>
+      </p>
+    </div>
+
+    <div class="page-body">
+      <aside class="page-rail print-hide" aria-label="Contact details">
+        <dl class="spec">
+          <div><dt>Email</dt><dd><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></dd></div>
+          <div><dt>GitHub</dt><dd><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">Stein-ark</a></dd></div>
+          <div><dt>Location</dt><dd>Zaria, Kaduna State</dd></div>
+          <div><dt>Available</dt><dd>From October 2026</dd></div>
+        </dl>
+        <p class="caption">
+          This page is styled for print. Use your browser's print dialogue to
+          produce a clean A4 copy.
+        </p>
+      </aside>
+
+      <div class="page-main-col">
+
+        <!-- ===================== Profile ===================== -->
+        <section class="section" aria-labelledby="cv-profile">
+          <div class="section-head">
+            <span class="section-index print-hide">01</span>
+            <h2 class="section-title" id="cv-profile">Profile</h2>
+          </div>
+          <p>
+            Final-year Computer Engineering student at Ahmadu Bello
+            University, Zaria, graduating September 2026, who builds web and
+            mobile products end to end and designs the control systems
+            underneath them. Founder and lead instructor of Genesis Engineer,
+            a one-month intensive tech bootcamp, and a student mentor
+            through COESA.
+          </p>
+        </section>
+
+        <!-- ===================== Education ===================== -->
+        <section class="section" aria-labelledby="cv-education">
+          <div class="section-head">
+            <span class="section-index print-hide">02</span>
+            <h2 class="section-title" id="cv-education">Education</h2>
+          </div>
+
+          <article class="cv-entry stack-s">
+            <h3 class="card-title">B.Eng Computer Engineering</h3>
+            <p class="eyebrow">Ahmadu Bello University, Zaria &#183; 2020 &#8212; 2026</p>
+            <p class="card-summary">
+              Graduating September 2026. Relevant coursework: Computer Vision,
+              Optimization Techniques, Web Programming, Engineering
+              Thermodynamics, Database Systems. Final-year project: DroneAid.
+            </p>
+          </article>
+
+          <!-- PLACEHOLDER ENTRY — Jonathan to supply school, location and dates. -->
+          <article class="cv-entry stack-s">
+            <h3 class="card-title">Senior Secondary Certificate (SSCE)</h3>
+            <p class="eyebrow">[FILL IN &#8212; school name, city] &#183; [FILL IN &#8212; dates]</p>
+            <p class="card-summary">
+              Mathematics, Physics, Chemistry, English Language.
+            </p>
+          </article>
+        </section>
+
+        <!-- ===================== Experience ===================== -->
+        <section class="section" aria-labelledby="cv-experience">
+          <div class="section-head">
+            <span class="section-index print-hide">03</span>
+            <h2 class="section-title" id="cv-experience">Experience</h2>
+          </div>
+
+          <article class="cv-entry stack-s">
+            <h3 class="card-title">Founder &amp; Lead Instructor</h3>
+            <p class="eyebrow">Genesis Engineer &#183; Present</p>
+            <p class="card-summary">
+              Founded and run a one-month intensive tech bootcamp across five
+              tracks: Web Foundations, Frontend Engineering, CAD &amp;
+              Modelling, Product Design and Agentic AI. Responsible for
+              curriculum, delivery and student outcomes.
+            </p>
+          </article>
+
+          <article class="cv-entry stack-s">
+            <h3 class="card-title">Frontend Developer (Contract)</h3>
+            <p class="eyebrow">Shards &#183; January &#8212; February 2026</p>
+            <p class="card-summary">
+              Contracted to build the interface for a restaurant web platform,
+              working to an agreed scope and delivery date.
+            </p>
+          </article>
+
+          <article class="cv-entry stack-s">
+            <h3 class="card-title">Freelance Full-Stack Developer</h3>
+            <p class="eyebrow">Independent &#183; 2025 &#8212; Present</p>
+            <p class="card-summary">
+              Web and mobile builds for small business clients, covering
+              design, implementation and deployment. Live production sites for
+              a clothing brand, a makeup artist and a hair stylist.
+            </p>
+          </article>
+
+          <article class="cv-entry stack-s">
+            <h3 class="card-title">Student Mentor</h3>
+            <p class="eyebrow">COESA &#183; Ahmadu Bello University, Zaria</p>
+            <p class="card-summary">
+              Mentoring engineering students on coursework, project work and
+              development tooling.
+            </p>
+          </article>
+        </section>
+
+        <!-- ===================== Projects ===================== -->
+        <section class="section" aria-labelledby="cv-projects">
+          <div class="section-head">
+            <span class="section-index print-hide">04</span>
+            <h2 class="section-title" id="cv-projects">Projects</h2>
+          </div>
+          <div class="stack-s">
+            <p class="card-summary">
+              <strong>DroneAid</strong> — 3D quadcopter flight simulation in
+              Simulink and Simscape Multibody with a full cascade control
+              system, flying an autonomous waypoint search-and-locate mission.
+            </p>
+            <p class="card-summary">
+              <strong>Cove</strong> and <strong>Smart Classroom Access &amp;
+              Ticketing</strong> — full-stack React, Node and MongoDB
+              platforms with role-based authentication and approval workflows.
+            </p>
+            <p class="card-summary">
+              <strong>SmartScale</strong> — React Native app paired with a
+              Bluetooth Low Energy weighing scale, with SQLite storage,
+              charting and PDF export.
+            </p>
+            <p class="print-hide"><a class="link-caps" href="projects.html">Full project list &#8594;</a></p>
+          </div>
+        </section>
+
+        <!-- ===================== Skills ===================== -->
+        <section class="section" aria-labelledby="cv-skills">
+          <div class="section-head">
+            <span class="section-index print-hide">05</span>
+            <h2 class="section-title" id="cv-skills">Skills</h2>
+          </div>
+
+          <dl class="spec">
+            <div>
+              <dt>Frontend</dt>
+              <dd>React, Next.js, TypeScript, JavaScript, HTML5, CSS3, React Native / Expo</dd>
+            </div>
+            <div>
+              <dt>Backend</dt>
+              <dd>Node.js, Express, MongoDB, REST APIs, Firebase</dd>
+            </div>
+            <div>
+              <dt>Engineering</dt>
+              <dd>MATLAB, Simulink, Simscape Multibody, control systems design, CAD (Onshape)</dd>
+            </div>
+            <div>
+              <dt>Tools</dt>
+              <dd>Git / GitHub, Claude Code, BLE integration, responsive design, Vercel</dd>
+            </div>
+          </dl>
+          <p class="print-hide"><a class="link-caps" href="skills.html">Detailed breakdown &#8594;</a></p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="eyebrow">Contact</span>
+        <!-- PLACEHOLDER address — replace before submission. -->
+        <p><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Elsewhere</span>
+        <p><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">github.com/Stein-ark</a></p>
+        <!-- PLACEHOLDER handle — confirm before submission. -->
+        <p><a class="link" href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">LinkedIn</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Location</span>
+        <p class="icon-inline">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          Zaria, Kaduna State, Nigeria
+        </p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Site</span>
+        <p><a class="link" href="cv.html">Curriculum Vitae</a></p>
+        <p><a class="link" href="projects.html">Projects</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Jonathan E. Abogye. All rights reserved.</span>
+      <span>COEN 554 Web Programming &#183; Ahmadu Bello University, Zaria</span>
+    </div>
+  </footer>
+</body>
+</html>

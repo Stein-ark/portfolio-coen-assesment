@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+  Jonathan E. Abogye — Educational Background. COEN 554 Web Programming.
+  No JavaScript. No framework. No external requests.
+  Canonical content schema: data/education.json. It is not fetched at run time
+  because scripting is prohibited; the same content is carried statically
+  below. See docs/technical-report.md, section 2.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Education — Jonathan E. Abogye</title>
+  <meta name="description" content="B.Eng Computer Engineering at Ahmadu Bello University, Zaria, 2020 to 2026. Coursework in computer vision, optimization techniques, web programming, thermodynamics and database systems.">
+  <meta name="author" content="Jonathan E. Abogye">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Jonathan E. Abogye — home">
+      <span class="logo-mark">JEA.</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-burger" for="nav-toggle">
+      <span class="visually-hidden">Open and close the main menu</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </label>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="education.html" aria-current="page">Education</a></li>
+        <li><a class="nav-link" href="skills.html">Skills</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="interests.html">Interests</a></li>
+        <li><a class="nav-link" href="cv.html">CV</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <span class="eyebrow">02 — Background</span>
+      <div class="accent-keyline"></div>
+      <h1 class="page-title">Educa<br>tion</h1>
+      <p class="page-lede lead">
+        Six years of Computer Engineering at Ahmadu Bello University, Zaria,
+        ending with a final-year project in flight control.
+      </p>
+    </div>
+
+    <div class="page-body">
+      <aside class="page-rail" aria-label="Education summary">
+        <dl class="spec">
+          <div><dt>Degree</dt><dd>B.Eng Computer Engineering</dd></div>
+          <div><dt>Institution</dt><dd>Ahmadu Bello University</dd></div>
+          <div><dt>Location</dt><dd>Zaria, Kaduna State</dd></div>
+          <div><dt>Period</dt><dd>2020 &#8212; 2026</dd></div>
+          <div><dt>Graduating</dt><dd>September 2026</dd></div>
+        </dl>
+        <p class="caption">
+          Full academic and professional history is set out on the CV page.
+        </p>
+        <p><a class="link-caps" href="cv.html">View CV &#8594;</a></p>
+      </aside>
+
+      <div class="page-main-col">
+
+        <!-- ================= Entry 1: degree ================= -->
+        <article class="section" aria-labelledby="e-abu">
+          <div class="section-head">
+            <span class="section-index">01</span>
+            <h2 class="section-title" id="e-abu">Ahmadu Bello University, Zaria</h2>
+          </div>
+
+          <p class="eyebrow">2020 &#8212; 2026 &#183; Undergraduate</p>
+
+          <dl class="spec">
+            <div><dt>Qualification</dt><dd>B.Eng Computer Engineering</dd></div>
+            <div><dt>Faculty</dt><dd>Engineering</dd></div>
+            <div><dt>Period</dt><dd>2020 &#8212; 2026</dd></div>
+            <div><dt>Graduating</dt><dd>September 2026</dd></div>
+            <div><dt>Status</dt><dd>In progress</dd></div>
+          </dl>
+
+          <div class="stack-m">
+            <h3 class="card-title">Relevant coursework</h3>
+            <ul class="list-reset spec">
+              <li class="spec-row"><span class="spec-label">Computer Vision</span><span class="spec-value">Image processing, feature detection</span></li>
+              <li class="spec-row"><span class="spec-label">Optimization Techniques</span><span class="spec-value">Linear and non-linear methods</span></li>
+              <li class="spec-row"><span class="spec-label">Web Programming</span><span class="spec-value">HTML5, CSS3, structured data</span></li>
+              <li class="spec-row"><span class="spec-label">Engineering Thermodynamics</span><span class="spec-value">Energy systems and cycles</span></li>
+              <li class="spec-row"><span class="spec-label">Database Systems</span><span class="spec-value">Relational design, querying, indexing</span></li>
+            </ul>
+
+            <h3 class="card-title">Final-year project</h3>
+            <p>
+              DroneAid — a 3D quadcopter flight simulation built in Simulink
+              and Simscape Multibody, implementing a full closed-loop cascade
+              control system and flying an autonomous waypoint
+              search-and-locate mission. Gains were derived analytically from
+              measured mass and inertia rather than tuned by hand.
+            </p>
+            <p><a class="link-caps" href="projects.html#droneaid">Read more &#8594;</a></p>
+          </div>
+        </article>
+
+        <!-- ================= Entry 2: secondary school =================
+             PLACEHOLDER ENTRY — Jonathan to supply the institution name,
+             location and dates. Every field marked [FILL IN] below must be
+             replaced before submission. Mirrored in data/education.json under
+             id "secondary-school-placeholder".
+             ============================================================== -->
+        <article class="section" aria-labelledby="e-secondary">
+          <div class="section-head">
+            <span class="section-index">02</span>
+            <h2 class="section-title" id="e-secondary">[FILL IN &#8212; Secondary school name]</h2>
+          </div>
+
+          <p class="eyebrow">Placeholder entry &#183; to be completed</p>
+
+          <dl class="spec">
+            <div><dt>Qualification</dt><dd>Senior Secondary Certificate (SSCE)</dd></div>
+            <div><dt>Institution</dt><dd>[FILL IN]</dd></div>
+            <div><dt>Location</dt><dd>[FILL IN &#8212; city, state]</dd></div>
+            <div><dt>Period</dt><dd>[FILL IN] &#8212; [FILL IN]</dd></div>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+          </dl>
+
+          <p class="caption">
+            Subjects: Mathematics, Physics, Chemistry, English Language.
+            Details to be confirmed.
+          </p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="eyebrow">Contact</span>
+        <!-- PLACEHOLDER address — replace before submission. -->
+        <p><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Elsewhere</span>
+        <p><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">github.com/Stein-ark</a></p>
+        <!-- PLACEHOLDER handle — confirm before submission. -->
+        <p><a class="link" href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">LinkedIn</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Location</span>
+        <p class="icon-inline">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          Zaria, Kaduna State, Nigeria
+        </p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Site</span>
+        <p><a class="link" href="cv.html">Curriculum Vitae</a></p>
+        <p><a class="link" href="projects.html">Projects</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Jonathan E. Abogye. All rights reserved.</span>
+      <span>COEN 554 Web Programming &#183; Ahmadu Bello University, Zaria</span>
+    </div>
+  </footer>
+</body>
+</html>

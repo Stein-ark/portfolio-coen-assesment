@@ -1,0 +1,1016 @@
+/* ==========================================================================
+   main.css — custom properties, layout system, components
+   --------------------------------------------------------------------------
+   MOBILE FIRST. Everything here is the small-screen base. Enhancements for
+   >=768px and >=1024px live in responsive.css, loaded last.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   --------------------------------------------------------------------------
+   Contrast audit against paper white #FFFFFF (WCAG 2.1):
+     --ink        #0A0A0A  19.6:1  AAA  body + headings
+     --secondary  #4A4A4A   8.9:1  AAA  secondary body copy
+     --muted      #6B6B6B   5.3:1  AA   labels, captions, footnotes
+     --grey-mid   #8A8A8A   3.4:1  ---  NON-TEXT ONLY (marks, borders, icons)
+     --accent     #E63329   4.3:1  AA-large / non-text  display + marks only
+     --accent-deep #C8261D  5.6:1  AA   small red text, links, focus ring
+   The brief named #8A8A8A for muted labels. At 3.4:1 that fails AA for small
+   text, so label text uses --muted (#6B6B6B) and #8A8A8A is retained strictly
+   for non-text marks where the 3:1 non-text threshold applies. Reasoning is
+   documented in docs/technical-report.md, section 1.
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Core palette */
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  --accent: #e63329;
+  --accent-deep: #c8261d;
+
+  /* Neutrals */
+  --rule: #e4e4e4;      /* hairline rules */
+  --grey-mid: #8a8a8a;  /* non-text marks only */
+  --muted: #6b6b6b;     /* muted text — AA compliant */
+  --secondary: #4a4a4a; /* secondary body copy */
+  --wash: #f7f7f7;      /* faint block fill */
+
+  /* Spacing scale */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --gutter: 1.25rem;         /* page side padding, mobile */
+  --hairline: 1px solid var(--rule);
+  --measure: 62ch;
+  --header-h: 4rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Page frame
+   -------------------------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-2xs);
+  z-index: 100;
+  padding: var(--space-2xs) var(--space-s);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  top: var(--space-2xs);
+}
+
+.wrap {
+  padding-inline: var(--gutter);
+}
+
+/* --------------------------------------------------------------------------
+   3. Header / navigation (shared markup on all eight pages)
+   --------------------------------------------------------------------------
+   CSS-ONLY COMPONENT 1 — the checkbox hack.
+   Source order inside <header> is: input -> label -> nav. The checked state of
+   the input drives the nav panel through the general sibling combinator. No
+   JavaScript, no inline handlers.
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  min-height: var(--header-h);
+  padding-inline: var(--gutter);
+  border-bottom: var(--hairline);
+  background: var(--paper);
+}
+
+/* Logo mark — the initials inside a thin-bordered box. The box is sized from
+   its text with a square minimum rather than pinned to a fixed width, so it
+   stays correct whether the mark is "J." or "JEA.". */
+.logo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding-inline: 0.4rem;
+  border: 1px solid var(--ink);
+}
+
+.logo-mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-0);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.logo:hover {
+  border-color: var(--accent);
+}
+
+.logo:hover .logo-mark {
+  color: var(--accent-deep);
+}
+
+/* The checkbox itself: off-screen but still focusable and still in the tab
+   order, so the menu is fully keyboard operable. */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* The label is the visible control. Three hairlines drawn as inline SVG. */
+.nav-burger {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  color: var(--ink);
+  border: 1px solid transparent;
+}
+
+.nav-burger:hover {
+  color: var(--accent-deep);
+}
+
+/* Keyboard focus ring is drawn on the label when the hidden input has focus. */
+.nav-toggle:focus-visible + .nav-burger {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 2px;
+}
+
+/* Collapsed panel. max-height + visibility keeps it out of the a11y tree
+   when closed and animates open without JavaScript. */
+.site-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  overflow: hidden;
+  max-height: 0;
+  visibility: hidden;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink);
+  transition: max-height 0.28s ease, visibility 0s linear 0.28s;
+}
+
+/* max-height must exceed the panel's natural height (eight items, ~376px at
+   a 16px root). overflow-y: auto is a safety net: if a visitor's text size
+   pushes the list past the cap, the panel scrolls rather than clipping the
+   last links out of reach. */
+.nav-toggle:checked ~ .site-nav {
+  max-height: 32rem;
+  overflow-y: auto;
+  visibility: visible;
+  transition: max-height 0.28s ease, visibility 0s linear 0s;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li + li {
+  border-top: var(--hairline);
+}
+
+.nav-link {
+  display: block;
+  padding: var(--space-xs) var(--gutter);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--step--1);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.nav-link:hover {
+  color: var(--accent-deep);
+}
+
+/* Current page marker — accent rule plus a bullet, never colour alone. */
+.nav-link[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.nav-link[aria-current="page"]::after {
+  content: " \25CF";
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   4. Focus visibility — keyboard users must always see where they are
+   -------------------------------------------------------------------------- */
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+label:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Links
+   -------------------------------------------------------------------------- */
+
+.link {
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.link:hover {
+  color: var(--accent-deep);
+  border-bottom-color: var(--accent);
+}
+
+/* Small tracked uppercase action link, e.g. READ MORE / VIEW PORTFOLIO */
+.link-caps {
+  display: inline-block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.link-caps:hover {
+  color: var(--accent-deep);
+  border-bottom-color: var(--accent);
+}
+
+/* Slash-separated inline link row (GITHUB / LINKEDIN / EMAIL) */
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link-row li + li::before {
+  content: "/";
+  margin-right: var(--space-2xs);
+  color: var(--grey-mid);
+}
+
+.link-row a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  color: var(--ink);
+}
+
+.link-row a:hover {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Homepage hero
+   --------------------------------------------------------------------------
+   Mobile base: one column, source order photo -> headline -> content, as the
+   brief requires. The three-column grid is switched on at >=1024px in
+   responsive.css.
+   -------------------------------------------------------------------------- */
+
+.home-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* Source order inside <main> is media -> left -> right -> band, which is
+   already the required small-screen order: photo, headline, content. */
+/* The FIGURE controls how much room the portrait takes; the image always
+   fills the figure completely. Sizing the figure rather than the image is
+   what keeps the crop clean — shrinking the image inside a taller figure
+   leaves a band of empty box below it.
+   Small screens get the full 3:4 portrait. The explicit ratio also gives the
+   figure a definite height, which the image's height: 100% resolves against.
+   >=1024px overrides both, in responsive.css. */
+.hero-media {
+  margin: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--wash);
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;       /* full bleed — never rounded */
+}
+
+.hero-left,
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;   /* let the column be narrower than its widest child */
+  padding: var(--space-l) var(--gutter);
+}
+
+.hero-right {
+  border-top: var(--hairline);
+}
+
+/* Headline block: rotated word in the gutter, stacked display type beside it */
+.hero-headline {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-s);
+  margin-block: var(--space-l);
+}
+
+/* The rotated word SOFTWARE. Hidden below 768px — it does not work narrow. */
+.vertical-word {
+  display: none;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.hero-stack {
+  margin: 0;
+}
+
+.hero-intro {
+  margin-bottom: var(--space-l);
+}
+
+.hero-foot {
+  margin-top: auto;
+  padding-top: var(--space-m);
+}
+
+/* The three-hairline mark at the top of the right column. Purely decorative:
+   it appears only at the widths where the functional menu control is hidden,
+   so there is never a dead control on the page. */
+.hero-rule-mark {
+  display: none;
+  margin-left: auto;
+  margin-bottom: var(--space-l);
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   7. Carousel — CSS-ONLY COMPONENT 2
+   --------------------------------------------------------------------------
+   Three radio inputs, three <label> dots, three panels. :checked drives which
+   panel is shown via the general sibling combinator. The dots are real
+   controls, not decoration.
+   -------------------------------------------------------------------------- */
+
+.carousel {
+  position: relative;
+}
+
+.carousel-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-m);
+}
+
+.carousel-dot {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--grey-mid);
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.carousel-dot:hover {
+  border-color: var(--accent);
+}
+
+.carousel-panel {
+  display: none;
+}
+
+#feat-1:checked ~ .carousel-dots label[for="feat-1"],
+#feat-2:checked ~ .carousel-dots label[for="feat-2"],
+#feat-3:checked ~ .carousel-dots label[for="feat-3"] {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+#feat-1:checked ~ .carousel-panels > .carousel-panel:nth-child(1),
+#feat-2:checked ~ .carousel-panels > .carousel-panel:nth-child(2),
+#feat-3:checked ~ .carousel-panels > .carousel-panel:nth-child(3) {
+  display: block;
+}
+
+.carousel-input:focus-visible ~ .carousel-dots label {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Specification table — the signature pattern
+   --------------------------------------------------------------------------
+   Hairline-ruled rows: wide-tracked label left, value right-aligned. Reused
+   for the featured project, education entries, skill groups and CV rows. It
+   is what makes eight separate pages read as one designed system.
+   -------------------------------------------------------------------------- */
+
+.spec {
+  width: 100%;
+  border-top: var(--hairline);
+  margin-block: var(--space-m);
+}
+
+.spec-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding-block: var(--space-2xs);
+  border-bottom: var(--hairline);
+}
+
+/* Both cells must be allowed to shrink and wrap. Without min-width: 0 a flex
+   item refuses to go below its min-content width, and a long label beside a
+   long value overflows the row at 320px. */
+.spec-label {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+  color: var(--muted);
+}
+
+.spec-value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+  text-align: right;
+  font-size: var(--step--1);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* <dl> variant — semantically correct for label/value pairs */
+dl.spec {
+  display: block;
+}
+
+dl.spec > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding-block: var(--space-2xs);
+  border-bottom: var(--hairline);
+}
+
+dl.spec dt {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  color: var(--muted);
+}
+
+dl.spec dd {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+  margin: 0;
+  text-align: right;
+  font-size: var(--step--1);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   9. Rotating badge — inline SVG textPath, animated with pure CSS keyframes.
+   CSS animation is not JavaScript; it is permitted.
+   -------------------------------------------------------------------------- */
+
+.badge {
+  position: relative;
+  width: 8.5rem;
+  height: 8.5rem;
+  flex: 0 0 auto;
+}
+
+.badge-ring {
+  width: 100%;
+  height: 100%;
+  animation: badge-spin 22s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.badge-ring text {
+  font-family: var(--font-display);
+  font-size: 7.4px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  fill: var(--ink);
+}
+
+.badge-centre {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+@keyframes badge-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   10. Bottom band of the hero
+   -------------------------------------------------------------------------- */
+
+.hero-band-left,
+.hero-band-right {
+  display: flex;
+  gap: var(--space-m);
+  padding: var(--space-m) var(--gutter) var(--space-l);
+  border-top: var(--hairline);
+}
+
+.hero-band-left {
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.hero-band-right {
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   11. Interior page furniture
+   -------------------------------------------------------------------------- */
+
+.page-head {
+  padding: var(--space-l) var(--gutter) var(--space-m);
+  border-bottom: var(--hairline);
+}
+
+.page-head .eyebrow {
+  display: block;
+  margin-bottom: var(--space-s);
+}
+
+.page-head .page-lede {
+  margin-top: var(--space-m);
+  color: var(--secondary);
+}
+
+.page-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-l);
+  padding: var(--space-l) var(--gutter) var(--space-2xl);
+}
+
+.section {
+  padding-block: var(--space-m);
+}
+
+.section + .section {
+  border-top: var(--hairline);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-s);
+  margin-bottom: var(--space-m);
+}
+
+.section-index {
+  font-family: var(--font-display);
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  color: var(--accent);
+}
+
+.mt-m { margin-top: var(--space-m); }
+
+.stack-s > * + * { margin-top: var(--space-2xs); }
+.stack-m > * + * { margin-top: var(--space-s); }
+.stack-l > * + * { margin-top: var(--space-m); }
+
+.rule {
+  border: 0;
+  border-top: var(--hairline);
+  margin-block: var(--space-m);
+}
+
+.rule-ink {
+  border-top-color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   12. Cards (projects, interests)
+   -------------------------------------------------------------------------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: var(--hairline);
+}
+
+.card {
+  padding-block: var(--space-m);
+  border-bottom: var(--hairline);
+}
+
+.card-summary {
+  margin-block: var(--space-2xs) var(--space-s);
+  color: var(--secondary);
+  max-width: 54ch;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs) var(--space-2xs);
+  list-style: none;
+  margin: 0 0 var(--space-s);
+  padding: 0;
+}
+
+.tag {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  padding: 3px 7px;
+}
+
+/* --------------------------------------------------------------------------
+   13. Project filter — CSS-ONLY COMPONENT 3
+   --------------------------------------------------------------------------
+   Radio inputs + labels act as tabs. :checked hides the cards that do not
+   carry the matching category class. No script.
+   -------------------------------------------------------------------------- */
+
+/* The inputs are direct siblings of .filter-bar and .card-grid — that
+   adjacency is what the ~ combinator below relies on. */
+.filter-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-m);
+  padding-block: var(--space-s);
+  border-block: var(--hairline);
+  margin-bottom: var(--space-m);
+}
+
+.filter-tab {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  color: var(--muted);
+  cursor: pointer;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+}
+
+.filter-tab:hover {
+  color: var(--accent-deep);
+}
+
+#filter-all:checked ~ .filter-bar label[for="filter-all"],
+#filter-web:checked ~ .filter-bar label[for="filter-web"],
+#filter-mobile:checked ~ .filter-bar label[for="filter-mobile"],
+#filter-eng:checked ~ .filter-bar label[for="filter-eng"] {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom-color: var(--accent);
+}
+
+/* Default (ALL) shows everything; each other choice hides non-matching cards */
+#filter-web:checked ~ .card-grid .card:not(.cat-web),
+#filter-mobile:checked ~ .card-grid .card:not(.cat-mobile),
+#filter-eng:checked ~ .card-grid .card:not(.cat-engineering) {
+  display: none;
+}
+
+#filter-all:focus-visible ~ .filter-bar label[for="filter-all"],
+#filter-web:focus-visible ~ .filter-bar label[for="filter-web"],
+#filter-mobile:focus-visible ~ .filter-bar label[for="filter-mobile"],
+#filter-eng:focus-visible ~ .filter-bar label[for="filter-eng"] {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   14. Accordion — CSS-ONLY COMPONENT 4 (native <details>/<summary>)
+   -------------------------------------------------------------------------- */
+
+.accordion {
+  border-top: var(--hairline);
+}
+
+.accordion details {
+  border-bottom: var(--hairline);
+}
+
+.accordion summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding-block: var(--space-s);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Plus / minus drawn in CSS — no icon font, no image */
+.accordion summary::after {
+  content: "+";
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--accent);
+  flex: 0 0 auto;
+}
+
+.accordion details[open] > summary::after {
+  content: "\2212"; /* minus sign */
+}
+
+.accordion summary:hover {
+  color: var(--accent-deep);
+}
+
+.accordion-body {
+  padding-bottom: var(--space-m);
+}
+
+/* --------------------------------------------------------------------------
+   15. Icons — hand-written inline SVG, one consistent sizing rule
+   -------------------------------------------------------------------------- */
+
+.icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.icon-lg {
+  width: 2rem;
+  height: 2rem;
+  stroke-width: 1.2;
+}
+
+.icon-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+/* --------------------------------------------------------------------------
+   16. Contact form — validation styled purely in CSS
+   -------------------------------------------------------------------------- */
+
+.form {
+  max-width: 34rem;
+}
+
+.field + .field {
+  margin-top: var(--space-m);
+}
+
+.field label {
+  display: block;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  color: var(--muted);
+  margin-bottom: var(--space-3xs);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: var(--space-2xs) 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  font-size: var(--step-0);
+  color: var(--ink);
+  border-radius: 0;
+  transition: border-color 0.18s ease;
+}
+
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+}
+
+/* Validation state is only shown once the control has content, so an empty
+   untouched form is never painted as an error. */
+.field input:not(:placeholder-shown):invalid,
+.field textarea:not(:placeholder-shown):invalid {
+  border-bottom-color: var(--accent);
+}
+
+.field input:not(:placeholder-shown):valid,
+.field textarea:not(:placeholder-shown):valid {
+  border-bottom-color: var(--ink);
+}
+
+/* The hint is revealed by the same condition — CSS-only inline validation. */
+.field-hint {
+  display: block;
+  margin-top: var(--space-3xs);
+  font-size: var(--step--2);
+  color: var(--accent-deep);
+  visibility: hidden;
+}
+
+.field input:not(:placeholder-shown):invalid ~ .field-hint,
+.field textarea:not(:placeholder-shown):invalid ~ .field-hint {
+  visibility: visible;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: var(--space-m);
+  padding: var(--space-xs) var(--space-l);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  letter-spacing: var(--track-label);
+  border: 1px solid var(--ink);
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.btn:hover {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+  color: var(--paper);
+}
+
+/* --------------------------------------------------------------------------
+   17. Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--ink);
+  padding: var(--space-l) var(--gutter);
+  font-size: var(--step--1);
+  color: var(--secondary);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-m);
+}
+
+.footer-col .eyebrow {
+  display: block;
+  margin-bottom: var(--space-2xs);
+}
+
+.footer-col a:hover {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-m);
+  justify-content: space-between;
+  margin-top: var(--space-l);
+  padding-top: var(--space-s);
+  border-top: var(--hairline);
+  font-size: var(--step--2);
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   18. One architectural accent detail — the accent-red keyline that opens
+   every interior page. This and the nav marker, dot and link hovers are the
+   only places red appears.
+   -------------------------------------------------------------------------- */
+
+.accent-keyline {
+  width: 3.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: var(--space-m);
+}

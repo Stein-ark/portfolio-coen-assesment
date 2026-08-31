@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "note": "Canonical skill model. Competency is recorded as a written note, deliberately not as a percentage or a star rating — a numeric score for a skill has no defensible unit and reads as unserious. Not fetched at runtime; skills.html carries the same content statically.",
+  "groups": [
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "competency_note": "Primary working area. Builds production interfaces from component architecture through to responsive layout and deployment, in both React web and React Native contexts.",
+      "skills": [
+        { "name": "React", "context": "Component architecture, state management, hooks" },
+        { "name": "Next.js", "context": "App Router, server components, static and dynamic rendering" },
+        { "name": "TypeScript", "context": "Typed component and API boundaries" },
+        { "name": "JavaScript", "context": "ES2022, asynchronous patterns" },
+        { "name": "HTML5", "context": "Semantic structure, forms, accessibility" },
+        { "name": "CSS3", "context": "Flexbox, Grid, custom properties, hand-written responsive systems" },
+        { "name": "React Native / Expo", "context": "Cross-platform mobile builds, native module integration" }
+      ]
+    },
+    {
+      "id": "backend",
+      "label": "Backend",
+      "competency_note": "Designs and ships the server side of the products listed under Projects: schema design, REST endpoints, authentication and role separation.",
+      "skills": [
+        { "name": "Node.js", "context": "Server runtime for all backend work" },
+        { "name": "Express", "context": "Routing, middleware, request validation" },
+        { "name": "MongoDB", "context": "Document schema design, indexing, aggregation" },
+        { "name": "REST APIs", "context": "Resource design, status-code discipline, versioning" },
+        { "name": "Firebase", "context": "Authentication, Firestore, hosting" }
+      ]
+    },
+    {
+      "id": "engineering",
+      "label": "Engineering",
+      "competency_note": "The Computer Engineering side of the degree, applied in the DroneAid final-year project: physical modelling, analytical gain derivation and closed-loop control.",
+      "skills": [
+        { "name": "MATLAB", "context": "Numerical analysis, plotting, script-driven experiments" },
+        { "name": "Simulink", "context": "Block-diagram modelling of closed-loop systems" },
+        { "name": "Simscape Multibody", "context": "3D rigid-body dynamics and physical simulation" },
+        { "name": "Control systems design", "context": "Cascade loops, PID tuning, stability analysis" },
+        { "name": "CAD (Onshape)", "context": "Parametric part and assembly modelling" }
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tools & Practice",
+      "competency_note": "Day-to-day working practice: version control, deployment, hardware interfacing and the accessibility and responsiveness standards applied to every build.",
+      "skills": [
+        { "name": "Git / GitHub", "context": "Branching, review, history hygiene" },
+        { "name": "Claude Code", "context": "Agentic development workflow" },
+        { "name": "BLE hardware integration", "context": "Device pairing, characteristic reads, protocol handling" },
+        { "name": "Responsive design", "context": "Mobile-first, tested at 320px through 1440px" },
+        { "name": "Vercel deployment", "context": "Static and framework deployments, preview environments" }
+      ]
+    }
+  ]
+}

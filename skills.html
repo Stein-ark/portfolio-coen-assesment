@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--
+  Jonathan E. Abogye — Technical Skills. COEN 554 Web Programming.
+  No JavaScript. No framework. No external requests.
+  The accordion below is a native <details>/<summary> element — a CSS-only
+  interactive component with no scripting.
+  Canonical content schema: data/skills.json. It is not fetched at run time
+  because scripting is prohibited; the same content is carried statically
+  below. See docs/technical-report.md, section 2.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills — Jonathan E. Abogye</title>
+  <meta name="description" content="Technical skills across frontend, backend, engineering simulation and tooling: React, Next.js, TypeScript, Node.js, MongoDB, MATLAB, Simulink and Simscape Multibody.">
+  <meta name="author" content="Jonathan E. Abogye">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Jonathan E. Abogye — home">
+      <span class="logo-mark">JEA.</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label class="nav-burger" for="nav-toggle">
+      <span class="visually-hidden">Open and close the main menu</span>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </label>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+        <li><a class="nav-link" href="education.html">Education</a></li>
+        <li><a class="nav-link" href="skills.html" aria-current="page">Skills</a></li>
+        <li><a class="nav-link" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="interests.html">Interests</a></li>
+        <li><a class="nav-link" href="cv.html">CV</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <span class="eyebrow">03 — Capability</span>
+      <div class="accent-keyline"></div>
+      <h1 class="page-title">Skills</h1>
+      <p class="page-lede lead">
+        Four groups, each with a note on what I actually do with it. No
+        percentage bars: a number against a skill has no defensible unit.
+      </p>
+    </div>
+
+    <div class="page-body">
+      <aside class="page-rail" aria-label="Skills summary">
+        <dl class="spec">
+          <div><dt>Frontend</dt><dd>7 technologies</dd></div>
+          <div><dt>Backend</dt><dd>5 technologies</dd></div>
+          <div><dt>Engineering</dt><dd>5 technologies</dd></div>
+          <div><dt>Tools</dt><dd>5 practices</dd></div>
+          <div><dt>Primary</dt><dd>React / Next.js / Node</dd></div>
+        </dl>
+        <p class="caption">
+          Each group expands. Everything is open by default on paper and in
+          browsers without the disclosure widget.
+        </p>
+        <p><a class="link-caps" href="projects.html">See it applied &#8594;</a></p>
+      </aside>
+
+      <div class="page-main-col">
+
+        <!-- ==================================================================
+             CSS-only accordion. Native <details>/<summary>: keyboard operable,
+             announced correctly by screen readers, zero JavaScript.
+             ================================================================== -->
+        <div class="accordion">
+
+          <details open>
+            <summary>
+              <span class="icon-inline">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M9 8l-5 4 5 4"/>
+                  <path d="M15 8l5 4-5 4"/>
+                </svg>
+                Frontend
+              </span>
+            </summary>
+            <div class="accordion-body stack-m">
+              <p class="tracked-body">
+                Primary working area. Builds production interfaces from
+                component architecture through to responsive layout and
+                deployment, in both React web and React Native contexts.
+              </p>
+              <ul class="list-reset spec">
+                <li class="spec-row"><span class="spec-label">React</span><span class="spec-value">Component architecture, state, hooks</span></li>
+                <li class="spec-row"><span class="spec-label">Next.js</span><span class="spec-value">App Router, server components, static and dynamic rendering</span></li>
+                <li class="spec-row"><span class="spec-label">TypeScript</span><span class="spec-value">Typed component and API boundaries</span></li>
+                <li class="spec-row"><span class="spec-label">JavaScript</span><span class="spec-value">ES2022, asynchronous patterns</span></li>
+                <li class="spec-row"><span class="spec-label">HTML5</span><span class="spec-value">Semantic structure, forms, accessibility</span></li>
+                <li class="spec-row"><span class="spec-label">CSS3</span><span class="spec-value">Flexbox, Grid, custom properties, hand-written systems</span></li>
+                <li class="spec-row"><span class="spec-label">React Native / Expo</span><span class="spec-value">Cross-platform builds, native module integration</span></li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="icon-inline">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <ellipse cx="12" cy="6" rx="7.5" ry="3"/>
+                  <path d="M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/>
+                  <path d="M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/>
+                </svg>
+                Backend
+              </span>
+            </summary>
+            <div class="accordion-body stack-m">
+              <p class="tracked-body">
+                Designs and ships the server side of the products listed under
+                Projects: schema design, REST endpoints, authentication and
+                role separation.
+              </p>
+              <ul class="list-reset spec">
+                <li class="spec-row"><span class="spec-label">Node.js</span><span class="spec-value">Server runtime for all backend work</span></li>
+                <li class="spec-row"><span class="spec-label">Express</span><span class="spec-value">Routing, middleware, request validation</span></li>
+                <li class="spec-row"><span class="spec-label">MongoDB</span><span class="spec-value">Document schema design, indexing, aggregation</span></li>
+                <li class="spec-row"><span class="spec-label">REST APIs</span><span class="spec-value">Resource design, status-code discipline, versioning</span></li>
+                <li class="spec-row"><span class="spec-label">Firebase</span><span class="spec-value">Authentication, Firestore, hosting</span></li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="icon-inline">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+                </svg>
+                Engineering
+              </span>
+            </summary>
+            <div class="accordion-body stack-m">
+              <p class="tracked-body">
+                The Computer Engineering side of the degree, applied in the
+                DroneAid final-year project: physical modelling, analytical
+                gain derivation and closed-loop control.
+              </p>
+              <ul class="list-reset spec">
+                <li class="spec-row"><span class="spec-label">MATLAB</span><span class="spec-value">Numerical analysis, plotting, script-driven experiments</span></li>
+                <li class="spec-row"><span class="spec-label">Simulink</span><span class="spec-value">Block-diagram modelling of closed-loop systems</span></li>
+                <li class="spec-row"><span class="spec-label">Simscape Multibody</span><span class="spec-value">3D rigid-body dynamics and physical simulation</span></li>
+                <li class="spec-row"><span class="spec-label">Control systems design</span><span class="spec-value">Cascade loops, PID tuning, stability analysis</span></li>
+                <li class="spec-row"><span class="spec-label">CAD (Onshape)</span><span class="spec-value">Parametric part and assembly modelling</span></li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="icon-inline">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M14.5 4.5a4.5 4.5 0 0 0 5.9 5.9L11 19.8a2.6 2.6 0 0 1-3.7-3.7z"/>
+                  <path d="M4.2 4.2l4 4"/>
+                </svg>
+                Tools &amp; Practice
+              </span>
+            </summary>
+            <div class="accordion-body stack-m">
+              <p class="tracked-body">
+                Day-to-day working practice: version control, deployment,
+                hardware interfacing, and the accessibility and responsiveness
+                standards applied to every build.
+              </p>
+              <ul class="list-reset spec">
+                <li class="spec-row"><span class="spec-label">Git / GitHub</span><span class="spec-value">Branching, review, history hygiene</span></li>
+                <li class="spec-row"><span class="spec-label">Claude Code</span><span class="spec-value">Agentic development workflow</span></li>
+                <li class="spec-row"><span class="spec-label">BLE integration</span><span class="spec-value">Device pairing, characteristic reads, protocol handling</span></li>
+                <li class="spec-row"><span class="spec-label">Responsive design</span><span class="spec-value">Mobile-first, tested 320px to 1440px</span></li>
+                <li class="spec-row"><span class="spec-label">Vercel deployment</span><span class="spec-value">Static and framework deployments, preview environments</span></li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="eyebrow">Contact</span>
+        <!-- PLACEHOLDER address — replace before submission. -->
+        <p><a class="link" href="mailto:hello@jonathanabogye.dev">hello@jonathanabogye.dev</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Elsewhere</span>
+        <p><a class="link" href="https://github.com/Stein-ark" rel="me noopener" target="_blank">github.com/Stein-ark</a></p>
+        <!-- PLACEHOLDER handle — confirm before submission. -->
+        <p><a class="link" href="https://www.linkedin.com/in/jonathan-abogye" rel="me noopener" target="_blank">LinkedIn</a></p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Location</span>
+        <p class="icon-inline">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+          Zaria, Kaduna State, Nigeria
+        </p>
+      </div>
+      <div class="footer-col">
+        <span class="eyebrow">Site</span>
+        <p><a class="link" href="cv.html">Curriculum Vitae</a></p>
+        <p><a class="link" href="projects.html">Projects</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Jonathan E. Abogye. All rights reserved.</span>
+      <span>COEN 554 Web Programming &#183; Ahmadu Bello University, Zaria</span>
+    </div>
+  </footer>
+</body>
+</html>
